@@ -1,4 +1,4 @@
-# budget-forecast-tool
+# nuxt-google-sheets-charts
 
 ## Build Setup
 
