@@ -39,6 +39,7 @@ p {
   font-size: 3.5rem;
   color: #000;
   letter-spacing: -0.1rem;
+  line-height: 1;
   margin-top: 2.5rem;
 }
 

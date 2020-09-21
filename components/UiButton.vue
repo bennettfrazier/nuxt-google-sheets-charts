@@ -63,6 +63,7 @@ export default {
   color: $black;
   line-height: 1;
   outline: 0;
+  margin-top: 0.5rem;
   transform: translateY(-0.2rem);
   font-size: 0.8rem;
   padding: 0.5rem 0.8rem;
