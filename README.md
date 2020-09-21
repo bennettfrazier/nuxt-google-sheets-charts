@@ -1,5 +1,7 @@
 # nuxt-google-sheets-charts
 
+Demo: https://nuxt-google-sheets-charts.vercel.app/
+
 ## Build Setup
 
 ```bash
