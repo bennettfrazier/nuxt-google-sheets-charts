@@ -9,15 +9,23 @@
           The purpose of this tool is to forecast the amount that will be in a
           bank account, by using Google Sheets as a data source.
         </p>
-        <!-- Copy the spreadsheet, update the new google-sheet-id by looking
-           at spreadsheet URL, and modify the CSV data to test out -->
-        <GoogleSheetCharts
-          google-sheet-id="1I7VEqeEj0pjJVEYCwlmkubK7rQMo_2CdowRkiNUIM80"
-        />
+        <!-- default chart id found in ~/constants -->
+        <GoogleSheetCharts :google-sheet-id="chartId" />
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { DEFAULT_CHART_ID } from '~/constants'
+export default {
+  data() {
+    return {
+      chartId: DEFAULT_CHART_ID,
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 .container {

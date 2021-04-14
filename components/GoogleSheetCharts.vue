@@ -14,15 +14,19 @@
         type="text"
       />
       <UiButton @click.native="updateChartId">update chart Id</UiButton>
+      <UiButton @click.native="resetChartId">Reset Chart ID</UiButton>
     </div>
     <ClientOnly>
       <div v-if="$fetchState.pending" class="googleSheetsCharts__loadingText">
         <p>Fetching chart data...</p>
       </div>
       <div v-else class="googleSheetsCharts__chartRenders">
+        <h3 class="googleSheetsCharts__averageTitle">
+          Average in bank: ${{ bankAverage }}
+        </h3>
         <LineChart
           :dataset="chartDataCurrent"
-          :dimensions="['date', 'amount', 'change']"
+          :dimensions="['date', 'amount', 'change', 'secondaryBankAccounts']"
           title="Bank Account Forecast"
         ></LineChart>
         <HeatmapChart
@@ -46,6 +50,8 @@
 
 <script>
 import { getJsonDataFromCsvString } from '~/modules/parse'
+import { getAverageValueFromArray, roundToCurrency } from '~/modules/helpers'
+import { DEFAULT_CHART_ID } from '~/constants'
 
 export default {
   props: {
@@ -86,6 +92,12 @@ export default {
         return date >= today
       })
     },
+    bankAverage() {
+      const currentDailyAmountInBank = this.chartDataCurrent.map((a) =>
+        parseInt(a.amount, 10)
+      )
+      return roundToCurrency(getAverageValueFromArray(currentDailyAmountInBank))
+    },
     googleSheetCsvUrl() {
       return `/sheets/${this.currentGoogleSheetId}/gviz/tq?tqx=out:csv&sheet=${this.googleSheetName}`
     },
@@ -96,6 +108,11 @@ export default {
     },
     updateChartId() {
       this.currentGoogleSheetId = this.tmpGoogleSheetId
+      this.$fetch()
+    },
+    resetChartId() {
+      this.currentGoogleSheetId = DEFAULT_CHART_ID
+      this.tmpGoogleSheetId = DEFAULT_CHART_ID
       this.$fetch()
     },
   },
@@ -131,5 +148,12 @@ export default {
   &:focus {
     border-bottom: 1px solid $black;
   }
+}
+
+.googleSheetsCharts__averageTitle {
+  padding: 10px;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background-color: #d3d3d3;
 }
 </style>
