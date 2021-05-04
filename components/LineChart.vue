@@ -1,6 +1,6 @@
 <template>
   <div ref="chart" class="lineChart">
-    <v-chart :options="chartOptions" autoresize />
+    <v-chart :option="chartOption" autoresize />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     },
   },
   computed: {
-    chartOptions() {
+    chartOption() {
       return chartDefault({
         title: {
           text: this.title,
@@ -32,14 +32,48 @@ export default {
           source: this.dataset,
           dimensions: this.dimensions,
         },
+        tooltip: {
+          axisPointer: {
+            animation: false,
+          },
+        },
         xAxis: {
           type: 'category',
         },
-        yAxis: {},
+        yAxis: {
+          axisLine: { onZero: true },
+        },
+        axisPointer: {
+          link: { xAxisIndex: 'all' },
+        },
         series: setSeriesByDimension({
           dimensions: this.dimensions,
-          settings: { type: 'line', smooth: true, areaStyle: {} },
+          settings: {
+            type: 'line',
+            stack: 'name',
+            smooth: true,
+            areaStyle: {},
+            emphasis: {
+              focus: 'series',
+            },
+          },
         }),
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+          },
+        },
+        calculable: true,
+        dataZoom: [
+          {
+            show: true,
+            realtime: true,
+          },
+          {
+            type: 'inside',
+            realtime: true,
+          },
+        ],
       })
     },
   },

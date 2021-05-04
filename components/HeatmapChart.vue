@@ -1,6 +1,6 @@
 <template>
   <div ref="chart" class="heatmapChart">
-    <v-chart :options="chartOptions" autoresize />
+    <v-chart :option="chartOption" autoresize />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     },
   },
   computed: {
-    chartOptions() {
+    chartOption() {
       const xAxisProp = this.dimensions[0]
       const yAxisProp = this.dimensions[1]
       const seriesDataProp = this.dimensions[2]

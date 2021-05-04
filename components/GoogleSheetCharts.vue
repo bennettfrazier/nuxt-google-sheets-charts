@@ -106,14 +106,14 @@ export default {
     closeError() {
       this.errorFetching = false
     },
-    updateChartId() {
+    async updateChartId() {
       this.currentGoogleSheetId = this.tmpGoogleSheetId
-      this.$fetch()
+      await this.$fetch()
     },
-    resetChartId() {
+    async resetChartId() {
       this.currentGoogleSheetId = DEFAULT_CHART_ID
       this.tmpGoogleSheetId = DEFAULT_CHART_ID
-      this.$fetch()
+      await this.$fetch()
     },
   },
 }

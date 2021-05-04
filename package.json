@@ -15,11 +15,12 @@
     "@nuxt/http": "^0.5.11",
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/pwa": "^3.0.2",
+    "@vue/composition-api": "^1.0.0-rc.8",
     "deepmerge": "^4.2.2",
-    "echarts": "^4.9.0",
+    "echarts": "^5.1.1",
     "nuxt": "^2.14.5",
     "papaparse": "^5.2.0",
-    "vue-echarts": "^5.0.0-beta.0"
+    "vue-echarts": "^6.0.0-rc.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
