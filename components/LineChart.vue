@@ -50,7 +50,6 @@ export default {
           dimensions: this.dimensions,
           settings: {
             type: 'line',
-            stack: 'name',
             smooth: true,
             areaStyle: {},
             emphasis: {
