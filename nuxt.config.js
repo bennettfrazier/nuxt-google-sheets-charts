@@ -1,5 +1,4 @@
 export default {
-  mode: 'universal',
   target: 'static',
   head: {
     title: 'Google Sheets Budget Forecast Tool',
